@@ -1,5 +1,5 @@
 
-void printf(char* str)
+void printf(const char* str)
 {
     static unsigned short* VideoMemory = (unsigned short*)0xb8000;
 
