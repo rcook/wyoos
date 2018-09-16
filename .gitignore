@@ -30,3 +30,6 @@
 
 # Kernels
 /mykernel.bin
+
+# ISOs
+/mykernel.iso
