@@ -20,6 +20,7 @@ mykernel.bin: linker.ld $(objects)
 	ld $(LDPARAMS) -T $< -o $@ $(objects)
 
 mykernel.iso: mykernel.bin
+	rm -rf iso
 	mkdir iso
 	mkdir iso/boot
 	mkdir iso/boot/grub
@@ -32,6 +33,7 @@ mykernel.iso: mykernel.bin
 	echo '  boot'                            >> iso/boot/grub/grub.cfg
 	echo '}'                                 >> iso/boot/grub/grub.cfg
 	grub-mkrescue --output=mykernel.iso iso
+	[ -f mykernel.iso ]
 	rm -rf iso
 
 run: mykernel.iso
@@ -43,6 +45,8 @@ install: mykernel.bin
 
 .PHONY: clean
 clean:
+	rm -rf iso
 	rm -f kernel.o
 	rm -f loader.o
 	rm -f mykernel.bin
+	rm -f mykernel.iso
